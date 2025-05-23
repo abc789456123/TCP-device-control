@@ -11,8 +11,14 @@
     ```bash
     ./server
     ```
+
+3. 클라이언트 실행
     
-3. 로그 확인:
+    ```bash
+    ./client <server's address>
+    ```
+    
+4. 로그 확인:
     
     ```bash
     journalctl -t tcp-server -f
