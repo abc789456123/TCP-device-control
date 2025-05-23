@@ -18,7 +18,7 @@ int runCommandWithSocket(const char *cmd, int client_fd) {
     fcntl(client_fd, F_SETFL, flags | O_NONBLOCK);
 
     int prev = -1;
-    char sendbuf[32];
+    char sendbuf[64];
     char recvbuf[2] = {0};
 
     while (1) {
@@ -26,7 +26,9 @@ int runCommandWithSocket(const char *cmd, int client_fd) {
 
         if (current != prev) {
             digitalWrite(LED, current == LOW ? HIGH : LOW);
-            snprintf(sendbuf, sizeof(sendbuf), "LED %s\n", current == LOW ? "ON" : "OFF");
+            snprintf(sendbuf, sizeof(sendbuf), "CDS sensor %s -> LED %s\n종료하려면 q 입력\n",
+                current == LOW ? "LOW" : "HIGH",
+                current == LOW ? "ON" : "OFF");
             write(client_fd, sendbuf, strlen(sendbuf));
             prev = current;
         }

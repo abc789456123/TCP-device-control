@@ -29,7 +29,7 @@ int runCommandWithSocket(const char *cmd, int client_fd) {
     char menu[128];
 
     snprintf(menu, sizeof(menu),
-        "===재생중===\n1. buzzer OFF\n2. 메뉴 화면으로\n명령 : ");
+        "===재생중===\n1. buzzer OFF\n2. 메뉴 화면으로\n");
     write(client_fd, menu, strlen(menu));
 
     while (current < TOTAL_NOTE) {
@@ -41,8 +41,8 @@ int runCommandWithSocket(const char *cmd, int client_fd) {
             if (buf[0] == '1') {
                 state = !state;
                 const char *resumed =
-                    state ? "===재생중===\n1. buzzer OFF\n2. 메뉴 화면으로\n명령 : "
-                          : "===일시정지됨===\n1. buzzer ON\n2. 메뉴 화면으로\n명령 : ";
+                    state ? "===재생중===\n1. buzzer OFF\n2. 메뉴 화면으로\n"
+                          : "===일시정지됨===\n1. buzzer ON\n2. 메뉴 화면으로\n";
                 write(client_fd, resumed, strlen(resumed));
             } else if (buf[0] == '2') {
                 softToneWrite(SPKR, 0);
