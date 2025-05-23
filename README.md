@@ -1,5 +1,4 @@
----
-가이드
+server 환경 빌드
 
 1. 빌드:
     
@@ -12,20 +11,14 @@
     ```bash
     ./server
     ```
-
-3. 클라이언트 실행
     
-    ```bash
-    ./client <server's address>
-    ```
-    
-4. 로그 확인:
+3. 로그 확인:
     
     ```bash
     journalctl -t tcp-server -f
     ```
-
     
+
 - 로그 내용 초기화
     
     ```bash
@@ -34,6 +27,31 @@
     ```
     
 - 실행 중인 서버 종료
+    
     ```bash
     sudo pkill server
-    ```  
+    ```
+    
+
+---
+
+client 빌드
+
+1. 빌드
+    
+    ```bash
+    cc client.c -o client
+    ```
+    
+2. 실행
+    
+    ```bash
+    ./client <server's IP address>
+    ```
+    
+
+---
+
+주의 사항
+
+build 이후에 client 실행 파일을 제외한 다른 파일들의 위치를 옮기면 안됩니다.
